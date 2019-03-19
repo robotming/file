@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <div class="blog-header">
-        <h1 class="blog-title">112</h1>
+        <h1 class="blog-title"></h1>
         <p class="lead blog-description"></p>
     </div>
 
@@ -28,11 +28,11 @@
                         <thead>
                         @foreach($list as $item)
                             <tr>
-                                <td>{{ $item->id }}</td>
-                                <td>{{ $item->title }}</td>
-                                <td><a href="/files/{{ $item->file_path }}" target="_blank">{{ $item->file_name }}</a></td>
-                                <td>{{ $item->storage_time }}</td>
-                                <td><a href="{{ url('/file/detail', ['id' => $item->id]) }}" target="_blank">查看</a></td>
+                                <td>{{ $item['id'] }}</td>
+                                <td>{{ $item['title'] }}</td>
+                                <td><a href="/files/{{ $item['file_path'] }}" target="_blank">{{ $item['file_name'] }}</a></td>
+                                <td>{{ $item['storage_time'] }}</td>
+                                <td><a href="{{ url('/file/detail', ['id' => $item['id']]) }}" target="_blank">查看</a></td>
                             </tr>
                         @endforeach
                         </thead>

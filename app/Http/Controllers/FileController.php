@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -16,9 +17,9 @@ class FileController extends Controller
         $limit = 10;
         $offset = ($page - 1) * $limit;
         //
-        $list = DB::table('file')->offset($offset)->limit($limit)->get()->toArray();
+        $list = app(File::class)->offset($offset)->limit($limit)->get()->toArray();
 
-        $total = DB::table('file')->count();
+        $total = app(File::class)->count();
         return view('file.list', [
             'page' => $page,
             'count' => $total,
@@ -30,9 +31,9 @@ class FileController extends Controller
         $id = $request->route('id');
 
         //
-        $res = DB::table('file')->where(['id' => $id])->first();
+        $res = File::where(['id' => $id])->first();
         if ($res) {
-            $detail = get_object_vars($res);
+            $detail = $res->toArray();
         } else {
             return response()->redirectTo('/file/list');
         }
@@ -74,7 +75,7 @@ class FileController extends Controller
                 ]);
             }
             // $webPath 文件地址
-            $res = DB::table('file')->insert([
+            $res = app(File::class)->insert([
                 'title' => $request->post('title'),
                 'file_name' => $fileName,
                 'file_path' => $newFileName,
