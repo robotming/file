@@ -39,8 +39,8 @@
             </div><!-- /.blog-post -->
             <nav>
                 <ul class="pager">
-                    <li><a href="https://v3.bootcss.com/examples/blog/#">Previous</a></li>
-                    <li><a href="https://v3.bootcss.com/examples/blog/#">Next</a></li>
+                    <li><a href="{{ url('/file/list') }}?page={{ $page <= 1 ? 1 : abs($page - 1) }}">Previous</a></li>
+                    <li><a href="{{ url('/file/list') }}?page={{ abs($page + 1) }}">Next</a></li>
                 </ul>
             </nav>
         </div><!-- /.blog-main -->

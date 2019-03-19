@@ -9,11 +9,19 @@ use Illuminate\Support\Facades\Storage;
 class FileController extends Controller
 {
     //
-    public function list() {
+    public function list(Request $request) {
 
+        $page = $request->get('page', 1);
+        $page = $page ?? 1;
+        $limit = 10;
+        $offset = ($page - 1) * $limit;
         //
-        $list = DB::table('file')->get()->toArray();
+        $list = DB::table('file')->offset($offset)->limit($limit)->get()->toArray();
+
+        $total = DB::table('file')->count();
         return view('file.list', [
+            'page' => $page,
+            'count' => $total,
             'list' => $list
         ]);
     }
@@ -33,7 +41,15 @@ class FileController extends Controller
         ]);
     }
 
+    public function add(){
+        return view('file.upload');
+    }
+
     public function upload(Request $request) {
+        if (!$request->filled('title')) {
+            echo 'error';
+            return;
+        }
         $file = $request->file('myfile');
         if ($file->isValid()) {
             // 文件扩展名
@@ -59,12 +75,14 @@ class FileController extends Controller
             }
             // $webPath 文件地址
             $res = DB::table('file')->insert([
+                'title' => $request->post('title'),
                 'file_name' => $fileName,
                 'file_path' => $newFileName,
                 'storage_time' => date("Y-m-d H:i:s"),
                 'status' => 1,
             ]);
             if ($res) {
+                return redirect('/file/list');
                 return response()->json([
                     'code' => 200,
                     'msg' => '添加成功',
