@@ -11,7 +11,6 @@ class FileController extends Controller
     //
     public function list() {
 
-
         //
         $list = DB::table('file')->get()->toArray();
         return view('file.list', [

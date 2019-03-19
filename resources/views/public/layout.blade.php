@@ -36,7 +36,9 @@
 <div class="blog-masthead">
     <div class="container">
         <nav class="blog-nav">
-            <a class="blog-nav-item active">Home</a>
+            @foreach(getMenus() as $key => $val)
+            <a class="blog-nav-item active" href="{{ $val['url'] }}">{{ $val['title'] }}</a>
+            @endforeach
         </nav>
     </div>
 </div>
