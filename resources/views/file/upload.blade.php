@@ -37,6 +37,7 @@
     <div class="container">
         <nav class="blog-nav">
             <a class="blog-nav-item active">Home</a>
+
         </nav>
     </div>
 </div>
@@ -44,16 +45,41 @@
 <div class="container">
 
     <div class="blog-header">
-        @yield('title')
+        <h1 class="blog-title">The Bootstrap Blog</h1>
+        <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
     </div>
 
     <div class="row">
+
         <div class="col-sm-8 blog-main">
-            @yield('content')
+
+            <div class="blog-post">
+                <form action="{{url('/file/upload')}}" enctype="multipart/form-data" method="post">
+                    {{ csrf_field() }}
+                    <input type="file" name="myfile" />
+                    <input type="submit" />
+                </form>
+            </div><!-- /.blog-post -->
+
         </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-            @yield('right')
+            <div class="sidebar-module sidebar-module-inset">
+                <h4>About</h4>
+                <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+            </div>
+            <div class="sidebar-module">
+                <h4>Archives</h4>
+                <ol class="list-unstyled">
+                    <li><a href="https://v3.bootcss.com/examples/blog/#">March 2014</a></li>
+                </ol>
+            </div>
+            <div class="sidebar-module">
+                <h4>Elsewhere</h4>
+                <ol class="list-unstyled">
+                    <li><a href="https://v3.bootcss.com/examples/blog/#">GitHub</a></li>
+                </ol>
+            </div>
         </div><!-- /.blog-sidebar -->
 
     </div><!-- /.row -->

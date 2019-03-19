@@ -15,5 +15,5 @@ Route::get('/', "IndexController@index");
 
 
 Route::get('/file/list', "FileController@list");
-Route::get('/file/detail', "FileController@detail");
+Route::get('/file/detail/{id}', "FileController@detail");
 Route::post('/file/upload', "FileController@upload");

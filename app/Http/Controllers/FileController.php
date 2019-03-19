@@ -19,9 +19,19 @@ class FileController extends Controller
         ]);
     }
 
-    public function detail() {
+    public function detail(Request $request) {
+        $id = $request->route('id');
 
-        return view('file.detail');
+        //
+        $res = DB::table('file')->where(['id' => $id])->first();
+        if ($res) {
+            $detail = get_object_vars($res);
+        } else {
+            return response()->redirectTo('/file/list');
+        }
+        return view('file.detail', [
+            'detail' => $detail
+        ]);
     }
 
     public function upload(Request $request) {
