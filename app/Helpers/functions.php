@@ -110,7 +110,7 @@ function arrayAppend(&$array, $position, $insert_array)
 
 function getMenus(){
     return [
-        ['title' => '首页', 'url' => '/'],
+//        ['title' => '首页', 'url' => '/'],
         ['title' => '文件', 'url' => '/file/list'],
         ['title' => '上传', 'url' => '/file/add'],
     ];

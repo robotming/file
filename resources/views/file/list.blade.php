@@ -1,7 +1,7 @@
 @extends('public.layout')
 @section('title')
     <h1 class="blog-title">列表</h1>
-    <p class="lead blog-description">简介</p>
+    <p class="lead blog-description"></p>
 @endsection
 @section('content')
     <div class="blog-header">
@@ -11,7 +11,7 @@
 
     <div class="row">
 
-        <div class="col-sm-8 blog-main">
+        <div class="col-sm-12 blog-main">
 
             <div class="blog-post">
                 <div class="table-responsive">
@@ -19,6 +19,7 @@
                         <thead>
                         <tr>
                             <th>id</th>
+                            <th>title</th>
                             <th>name</th>
                             <th>time</th>
                             <th>==</th>
@@ -28,6 +29,7 @@
                         @foreach($list as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
+                                <td>{{ $item->title }}</td>
                                 <td><a href="/files/{{ $item->file_path }}" target="_blank">{{ $item->file_name }}</a></td>
                                 <td>{{ $item->storage_time }}</td>
                                 <td><a href="{{ url('/file/detail', ['id' => $item->id]) }}" target="_blank">查看</a></td>

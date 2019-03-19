@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', "IndexController@index");
+Route::get('/', "FileController@list");
 
 
 Route::get('/file/list', "FileController@list");
